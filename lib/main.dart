@@ -29,6 +29,22 @@ class _DiceAppState extends State<DiceApp> {
   int leftDiceNumber = Random().nextInt(max) + 1;
   int rightDiceNumber = Random().nextInt(max) + 1;
 
+  void changeDiceNumbers() {
+    int newValue = Random().nextInt(max) + 1;
+    //Change left
+    while (newValue == leftDiceNumber) {
+      newValue = Random().nextInt(max) + 1;
+    }
+    leftDiceNumber = newValue;
+
+    //Change right
+    newValue = Random().nextInt(max) + 1;
+    while (newValue == rightDiceNumber) {
+      newValue = Random().nextInt(max) + 1;
+    }
+    rightDiceNumber = newValue;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -38,11 +54,7 @@ class _DiceAppState extends State<DiceApp> {
             child: TextButton(
               onPressed: () {
                 setState(() {
-                  int newValue = Random().nextInt(max) + 1;
-                  while (newValue == leftDiceNumber) {
-                    newValue = Random().nextInt(max) + 1;
-                  }
-                  leftDiceNumber = newValue;
+                  changeDiceNumbers();
                 });
               },
               child: Image.asset('images/dice$leftDiceNumber.png'),
@@ -52,11 +64,7 @@ class _DiceAppState extends State<DiceApp> {
             child: TextButton(
               onPressed: () {
                 setState(() {
-                  int newValue = Random().nextInt(max) + 1;
-                  while (newValue == rightDiceNumber) {
-                    newValue = Random().nextInt(max) + 1;
-                  }
-                  rightDiceNumber = newValue;
+                  changeDiceNumbers();
                 });
               },
               child: Image.asset('images/dice$rightDiceNumber.png'),
